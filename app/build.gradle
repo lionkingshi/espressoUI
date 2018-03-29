@@ -1,0 +1,113 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'spoon'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.dolby.daxappui"
+        minSdkVersion 24
+        targetSdkVersion 26
+        versionCode 1
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArgument "listener", "com.dolby.qa.utils.customRunListener.XmlRunListener"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        internal {
+            applicationId "com.dolby.daxappui.internal"
+            versionNameSuffix "_internal"
+        }
+    }
+
+    //modify test apk name for each build
+    testVariants.all {variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            def fileName = output.outputFile.name
+            if (outputFile != null){
+                if (fileName.contains("internal")){
+                    outputFileName = 'DolbyUITestCase.apk'
+                }else {
+//                    outputFileName = 'DolbyUITest.apk'
+                }
+            }
+        }
+    }
+    //modify app apk name for each build
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            def fileName = outputFile.name
+            if (outputFile != null){
+                if (fileName.contains("internal")){
+                    if (variant.buildType.name == 'debug'){
+                        outputFileName = 'DolbyInternalUI.apk'
+                    }
+                }else {
+                    if (variant.buildType.name == 'debug'){
+//                        outputFileName = 'DolbyInternalUI.apk'
+                    }
+                }
+            }
+        }
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test:rules:1.0.1'
+    //    androidTestCompile('com.android.support.test.espresso:espresso-intents:2.2.2') {
+    //        exclude group: 'com.android.support', module: 'support-annotations'
+    //    }
+    androidTestImplementation('com.android.support.test.espresso:espresso-contrib:3.0.1') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'design'
+    }
+    //    androidTestEspressoImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+    // add uiautomator dependencies
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+    android {
+        configurations.all {
+            resolutionStrategy.force 'com.android.support:support-annotations:25.3.1'
+        }
+    }
+    implementation files('libs/dax3_static.jar')
+
+    // add spoon library
+    androidTestCompile 'com.squareup.spoon:spoon-client:1.7.1'
+}
+
+//spoon {
+//    debug = true
+//    adbTimeout = 30
+//}
