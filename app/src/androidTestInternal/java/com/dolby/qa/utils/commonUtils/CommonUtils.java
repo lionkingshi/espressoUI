@@ -78,9 +78,10 @@ public class CommonUtils implements ICommonUtils {
     public  boolean isTablet(Context context){
         //judge the device is smart phone or tablet
         int mDeviceScreenSize=context.getResources().getConfiguration().screenLayout;
-        int mMaskAfter=mDeviceScreenSize& Configuration.SCREENLAYOUT_SIZE_MASK;
+        int mMaskAfter=mDeviceScreenSize & Configuration.SCREENLAYOUT_SIZE_MASK;
         boolean xlarge = (Configuration.SCREENLAYOUT_SIZE_XLARGE == mMaskAfter);
-        boolean large  = (Configuration.SCREENLAYOUT_SIZE_LARGE == mMaskAfter);
+//        boolean large  = (Configuration.SCREENLAYOUT_SIZE_LARGE == mMaskAfter);
+        boolean large = false ;
         Log.d(LOG_TAG,"xlarge value :"+xlarge+" large value : "+large + " device screen value :"+mDeviceScreenSize + "and after mask :"+mMaskAfter);
         return (xlarge || large );
     }
