@@ -90,6 +90,7 @@ It's necessary to at least seperate user interaction logic from detailed view op
 So the fisrt thing is to define all atmotic view actions and view assertions , 
 then wrapped them to provide a interface for high level use . 
 The last thing is to write every test case steps one by one using wrapped method . 
+The following flowchart is showed how to organize our UI test code  : 
 
 ![test code layer](test_code_layer.png)
 
