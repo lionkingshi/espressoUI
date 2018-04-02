@@ -101,5 +101,15 @@ All we need do is to add spoon client library to your module's 'build.gradle' :
     // add spoon library
     androidTestCompile 'com.squareup.spoon:spoon-client:1.7.1'
 ```
+To stand alone run the spoon , we'd bether sync spoon project and build spoon-runner*.jar 
+Then copy this jar and your app and app test apk to same folder , Running following command : 
+```
+java -jar spoon-runner-2.0.0-SNAPSHOT-all.jar --debug \
+	app-test.apk app.apk \
+	--sdk /*/Android/sdk \
+	--output ui \
+	--class-name com.dolby.qa.daxuitest.AllDaxTest \
+	--es listener com.dolby.qa.utils.customRunListener.XmlRunListener
+```
 
 [Spoon]: https://github.com/square/spoon
