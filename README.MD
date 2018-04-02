@@ -6,7 +6,8 @@ while the former focus on one single app behaviour and
 the latter focus on cross-app functional UI testing across system and installed apps.
 
 Meanwhile Espresso test framework provided extended method to search view and perform operation 
-just overrided ViewMatcher and ViewAction  
+just overrided ViewMatcher and ViewAction . 
+Below code is an example to swipe seekbar to expected progress and assert the progress is expected :
 
     public static Matcher<View> withProgress(final int expectedProgress){
         return new BoundedMatcher<View,SeekBar>(SeekBar.class){
