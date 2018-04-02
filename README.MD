@@ -8,8 +8,6 @@ the latter focus on cross-app functional UI testing across system and installed 
 Meanwhile Espresso test framework provided extended method to search view and perform operation 
 just overrided ViewMatcher and ViewAction  
 
-'''java
-
     public static Matcher<View> withProgress(final int expectedProgress){
         return new BoundedMatcher<View,SeekBar>(SeekBar.class){
             @Override
@@ -82,7 +80,6 @@ just overrided ViewMatcher and ViewAction
             return new float[]{xy[0] + xPosition, xy[1]};
         }
      }
-'''
   
 [UI Automation]: https://developer.android.com/training/testing/ui-automator.html
 [Espresso]: https://developer.android.com/training/testing/espresso/index.html
