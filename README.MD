@@ -98,12 +98,6 @@ To run same test cases on multiple configuration device simultaneously , [Spoon]
 All we need do is to add spoon client library to your module's 'build.gradle' : 
 
 ```gradle
-repositories {
-    jcenter()
-}
-```
-
-```gradle
     // add spoon library
     androidTestCompile 'com.squareup.spoon:spoon-client:1.7.1'
 ```
