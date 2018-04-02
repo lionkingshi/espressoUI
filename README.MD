@@ -10,9 +10,9 @@ the latter focus on cross-app functional UI testing across system and installed 
 
 # Test Code Layer
 It's necessary to at least seperate user interaction logic from detailed view operations. 
-So the fisrt thing is to define all atmotic view action and view assertions , 
-then wrapped them to provider a interface for high level use . 
-The last thing is to write every test case step one by one using wrapped api . 
+So the fisrt thing is to define all atmotic view actions and view assertions , 
+then wrapped them to provide a interface for high level use . 
+The last thing is to write every test case steps one by one using wrapped method . 
 
 ![test code layer](test_code_layer.png)
 
