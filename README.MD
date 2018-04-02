@@ -93,3 +93,12 @@ The last thing is to write every test case steps one by one using wrapped method
 
 ![test code layer](test_code_layer.png)
 
+# parallel running 
+To run same test cases on multiple configuration device simultaneously , [Spoon][] is used. Once all tests have completed , a static HTML summary is generated with detailed information about each device and test . 
+All we need do is to add spoon client library to your module's 'build.gradle' : 
+'''gradle
+    // add spoon library
+    androidTestCompile 'com.squareup.spoon:spoon-client:1.7.1'
+'''
+
+[Spoon]: https://github.com/square/spoon
